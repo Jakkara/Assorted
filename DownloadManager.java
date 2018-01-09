@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -13,8 +14,9 @@ public class DownloadManager {
         URI u = URI.create(url);
         try (InputStream in = u.toURL().openStream()) {
             Files.copy(in, path);
+            System.out.println("Download complete.");
         }catch (FileAlreadyExistsException faeE){
-            System.out.println("File already exists. Exiting...");
+            faeE.printStackTrace();
         }
     }
 

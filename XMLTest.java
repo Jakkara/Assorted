@@ -1,12 +1,20 @@
 import org.xml.sax.*;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
+import java.util.Scanner;
 
 public class XMLTest {
     public static void main(String[] args){
+        Scanner reader = new Scanner(System.in);
         DownloadManager downloader = new DownloadManager();
-
-        Document xmlDoc = getDocument("./src/wms.xml");
+        System.out.println("Input download URL : ");
+        String url = reader.nextLine();
+        System.out.println("Input file name : ");
+        String fileName =  reader.nextLine();
+        try{
+            downloader.download(url,fileName);
+        }catch(Exception e){e.printStackTrace();}
+        Document xmlDoc = getDocument(fileName);
         System.out.println("File found : " + xmlDoc.getDocumentElement().getNodeName());
         Node rootLayer = xmlDoc.getElementsByTagName("Layer").item(0);
         NodeList layers = findNodes(rootLayer, "Layer");
