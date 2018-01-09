@@ -4,6 +4,8 @@ import javax.xml.parsers.*;
 
 public class XMLTest {
     public static void main(String[] args){
+        DownloadManager downloader = new DownloadManager();
+
         Document xmlDoc = getDocument("./src/wms.xml");
         System.out.println("File found : " + xmlDoc.getDocumentElement().getNodeName());
         Node rootLayer = xmlDoc.getElementsByTagName("Layer").item(0);
